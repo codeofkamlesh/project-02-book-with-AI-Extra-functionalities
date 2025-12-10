@@ -31,7 +31,15 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- All claims and references must be validated directly from authoritative origins
+- All deliverables must follow SpecKit+, Context7 MCP architecture, and Docusaurus UI
+- Content must be written for general technical audiences (CS, AI, and software engineering background)
+- All modules must follow hierarchical spec structure (Module → Chapters → Subsections)
+- Every claim, diagram, and design decision must be traceable to its corresponding spec or model
+- All outputs strictly follow the user intent
+- Prompt History Records (PHRs) are created automatically and accurately for every user prompt
+- Architectural Decision Record (ADR) suggestions are made intelligently for significant decisions
+- All changes are small, testable, and reference code precisely
 
 ## Project Structure
 

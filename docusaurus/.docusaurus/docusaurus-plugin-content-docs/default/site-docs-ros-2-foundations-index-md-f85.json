@@ -1,0 +1,27 @@
+{
+  "id": "ros2-foundations/index",
+  "title": "ROS2 Foundations",
+  "description": "Overview",
+  "source": "@site/docs/ros2-foundations/index.md",
+  "sourceDirName": "ros2-foundations",
+  "slug": "/ros2-foundations/",
+  "permalink": "/docs/ros2-foundations/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/project-01-book-with-AI/tree/master/docusaurus/docs/ros2-foundations/index.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "intro",
+    "permalink": "/docs/intro"
+  },
+  "next": {
+    "title": "Simulation: Gazebo & Unity for Digital Twins",
+    "permalink": "/docs/simulation/"
+  }
+}

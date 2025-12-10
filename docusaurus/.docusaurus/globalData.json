@@ -1,0 +1,58 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "integration/index",
+              "path": "/docs/integration/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "nvidia-isaac/index",
+              "path": "/docs/nvidia-isaac/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "ros2-foundations/index",
+              "path": "/docs/ros2-foundations/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "simulation/index",
+              "path": "/docs/simulation/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "vla-humanoids/index",
+              "path": "/docs/vla-humanoids/",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

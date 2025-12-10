@@ -1,0 +1,23 @@
+{
+  "id": "integration/index",
+  "title": "Cross-Model Integration",
+  "description": "Overview",
+  "source": "@site/docs/integration/index.md",
+  "sourceDirName": "integration",
+  "slug": "/integration/",
+  "permalink": "/docs/integration/",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/your-username/project-01-book-with-AI/tree/master/docusaurus/docs/integration/index.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Vision-Language-Action (VLA) for Humanoid Control",
+    "permalink": "/docs/vla-humanoids/"
+  }
+}

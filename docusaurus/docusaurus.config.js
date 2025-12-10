@@ -4,7 +4,8 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import githubTheme from 'prism-react-renderer/themes/github/index.js';
+import draculaTheme from 'prism-react-renderer/themes/dracula/index.js';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -16,7 +17,7 @@ const config = {
   url: 'https://your-username.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/project-01-book-with-AI',
+  baseUrl: process.env.NODE_ENV === 'production' ? '/project-01-book-with-AI' : '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -123,9 +124,9 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} AI/Spec-Driven Robotics Book. Built with Docusaurus.`,
       },
       prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-        additionalLanguages: ['python', 'bash', 'json', 'yaml', 'xml'],
+        theme: githubTheme,
+        darkTheme: draculaTheme,
+        additionalLanguages: ['python', 'bash', 'json', 'yaml'],
       },
     }),
 };

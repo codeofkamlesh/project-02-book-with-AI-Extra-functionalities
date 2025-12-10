@@ -1,128 +1,155 @@
-# Feature Specification: Vision-Language-Action (VLA) for Humanoids
+# Feature Specification: Module 4 — Vision-Language-Action (VLA)
 
 **Feature Branch**: `004-vla-humanoids`
-**Created**: 2025-12-07
+**Created**: 2025-12-10
 **Status**: Draft
-**Input**: User description: "/sp.specify — Model 4: Vision-Language-Action (VLA) for Humanoids
+**Input**: User description: "/sp.specify Module 4 — Vision-Language-Action (VLA)
 
-Target audience:
-Developers exploring multimodal AI for humanoid robot control using models like VLMs, policy networks, and action planners.
+Project: Physical AI & Humanoid Robotics
+Focus Theme: LLM-based planning, multimodal perception, natural language instruction following
+Target Audience: Robotics and AI students exploring embodied intelligence
+Format: Markdown (Docusaurus), APA citations
 
-Focus:
-VLA pipelines for embodied agents: perception → reasoning → action, using simulation environments (Gazebo, Isaac). Includes prompt-to-action systems, task planning, and affordance-based control.
+Purpose:
+Define the specification for Vision-Language-Action systems where humanoid robots
+understand human speech, interpret visual scenes, plan actions, and execute tasks.
+This module introduces LLM planning, Whisper-based voice input, multimodal perception,
+and the Capstone "Autonomous Humanoid" project.
 
-Success criteria:
-
-Defines VLA architecture clearly
-
-Provides at least 3 example pipelines (e.g., “pick object”, “navigate to room”, “open drawer”)
-
-Shows ROS 2 integration with VLA models
-
-Reader can run a prompt-based humanoid control demo
-
-All claims validated via official docs and research papers
+Success Criteria:
+- Student understands how LLMs integrate with ROS 2
+- Student can define VLA pipelines (Voice → Language → Plan → Action)
+- Student understands multimodal perception links
+- Student can conceptually describe a full robotic task workflow
+- All claims and frameworks supported by sources
 
 Constraints:
+- Word count: 3,000–5,000
+- Minimum 5 academic/credible sources
+- APA citations
+- No coding of LLM integration
+- No Whisper or ROS code
 
-Format: Docusaurus Markdown
+Not Building:
+- End-to-end VLA pipeline implementation
+- Real robot control scripts
+- LLM training
 
-≤ 1,500 words per chapter
+Chapters:
+1. **Foundations of Vision-Language-Action Systems**
+   - Why VLA is the future of embodied AI
+   - Role of multimodal grounding
 
-Requires diagrams (draw.io compatible) for each pipeline
+2. **Voice-to-Action Pipelines**
+   - Whisper speech-to-text
+   - Converting human intent into machine instructions
 
-Only uses publicly available models and simulators
+3. **LLM-Based Cognitive Planning**
+   - Translating high-level commands ("Clean the room")
+   - Multi-step reasoning for a humanoid robot
+   - Safety and reliability constraints
 
-Timeline: Hackathon window
+4. **Perception Layer for VLA**
+   - Object detection and scene understanding
+   - Vision-language alignment
 
-Sources:
+5. **Capstone: The Autonomous Humanoid**
+   - Receives a voice command
+   - Plans a path
+   - Navigates obstacles using VSLAM
+   - Identifies target object
+   - Manipulates it via humanoid arm
+   - Simulation-first execution
 
-Robotics VLA papers (e.g., RT-X, VLA-based humanoids)
-
-NVIDIA, Google,"
+6. **Module Deliverable E"
 
 ## User Scenarios & Testing *(mandatory)*
 
-### User Story 1 - VLA Architecture Understanding (Priority: P1)
+### User Story 1 - Understanding VLA Systems and LLM Integration (Priority: P1)
 
-A developer exploring multimodal AI for humanoid robots needs to understand the VLA architecture clearly, including how perception, reasoning, and action components work together in the perception → reasoning → action pipeline.
+As a robotics and AI student exploring embodied intelligence, I need to understand how Vision-Language-Action systems work with LLM-based planning so that I can conceptualize how humanoid robots understand human speech, interpret visual scenes, and execute tasks.
 
-**Why this priority**: This is the foundational knowledge required before implementing any specific VLA pipelines. Understanding the architecture is essential for all other learning objectives.
+**Why this priority**: This is foundational knowledge required to work with VLA systems. Understanding how LLMs integrate with ROS 2 is essential for all other learning objectives.
 
-**Independent Test**: The user can explain the VLA architecture components and their interactions without referring to documentation.
+**Independent Test**: User can explain how LLMs integrate with ROS 2 and describe the VLA pipeline (Voice → Language → Plan → Action).
 
 **Acceptance Scenarios**:
-1. **Given** a beginner has no prior knowledge of VLA systems, **When** they read the chapter, **Then** they can identify the 3 main VLA components and their purposes
-2. **Given** a diagram of a VLA system, **When** the user examines it, **Then** they can trace the flow from perception to reasoning to action
+
+1. **Given** a student studying VLA systems, **When** they read the module content, **Then** they can articulate how LLMs integrate with ROS 2 for humanoid robot control.
+2. **Given** a student studying VLA systems, **When** they analyze the VLA pipeline, **Then** they can define the complete pipeline from voice input to action execution.
 
 ---
 
-### User Story 2 - VLA Pipeline Implementation (Priority: P2)
+### User Story 2 - Mastering Voice-to-Action Pipelines (Priority: P2)
 
-A developer wants to implement at least 3 example VLA pipelines (pick object, navigate to room, open drawer) using simulation environments like Gazebo and Isaac, with prompt-to-action systems.
+As an AI student, I need to understand how voice commands are converted to robot actions using Whisper-based speech-to-text and LLM-based planning so that I can conceptualize how humanoid robots process natural language instructions.
 
-**Why this priority**: This provides practical application of the VLA architecture concepts and demonstrates the core functionality of VLA systems.
+**Why this priority**: Understanding voice-to-action processing is critical for developing humanoid robots that can respond to human commands naturally.
 
-**Independent Test**: The user can successfully run at least 3 different VLA pipelines with different tasks in simulation.
+**Independent Test**: User can explain how Whisper speech-to-text converts human intent into machine instructions and how LLMs perform cognitive planning.
 
 **Acceptance Scenarios**:
-1. **Given** a properly configured simulation environment, **When** the user runs the "pick object" pipeline, **Then** the humanoid robot successfully identifies and grasps the target object
-2. **Given** the simulation environment, **When** the user runs the "navigate to room" pipeline, **Then** the humanoid robot successfully plans and executes navigation to the specified location
-3. **Given** the simulation environment, **When** the user runs the "open drawer" pipeline, **Then** the humanoid robot successfully identifies the drawer and performs the opening action
+
+1. **Given** a student working with voice processing, **When** they analyze the Whisper speech-to-text system, **Then** they can describe how human speech is converted to text for LLM processing.
+2. **Given** a student working with LLM planning, **When** they examine cognitive planning, **Then** they can explain how high-level commands like "Clean the room" are translated into multi-step reasoning for humanoid robots.
 
 ---
 
-### User Story 3 - ROS 2 Integration & Demo (Priority: P3)
+### User Story 3 - Understanding Multimodal Perception and Capstone Implementation (Priority: P3)
 
-A developer needs to integrate VLA models with ROS 2 and run a prompt-based humanoid control demo that demonstrates the complete system in action.
+As a robotics student, I need to understand how multimodal perception links vision and language in VLA systems and how these components work together in the capstone autonomous humanoid project so that I can conceptualize a complete robotic task workflow.
 
-**Why this priority**: This demonstrates the practical integration of VLA systems with the ROS 2 ecosystem, which is essential for real-world applications.
+**Why this priority**: Understanding multimodal perception is essential for creating robots that can operate in real-world environments, and the capstone project demonstrates all components working together.
 
-**Independent Test**: The user can run a complete prompt-based humanoid control demo that connects all VLA components with ROS 2.
+**Independent Test**: User can describe how object detection and scene understanding work with vision-language alignment and explain the complete capstone workflow.
 
 **Acceptance Scenarios**:
-1. **Given** VLA models and ROS 2 nodes, **When** the user connects them, **Then** data flows correctly between systems
-2. **Given** a prompt input, **When** the user runs the humanoid control demo, **Then** the robot executes the requested action based on the prompt
+
+1. **Given** a student studying perception, **When** they analyze multimodal perception, **Then** they can explain how object detection and scene understanding align with language processing.
+2. **Given** a student studying the capstone project, **When** they examine the autonomous humanoid workflow, **Then** they can describe how voice commands lead to path planning, obstacle navigation, object identification, and manipulation.
 
 ---
 
 ### Edge Cases
 
-- What happens when the VLA model doesn't recognize an object in the environment?
-- How does the system handle ambiguous or unclear natural language prompts?
-- What if the simulation environment doesn't match the real-world scenario?
+- What happens when Whisper speech-to-text fails to accurately transcribe human speech?
+- How does the system handle ambiguous or complex natural language commands that LLMs might misinterpret?
+- What occurs when the perception system fails to identify objects in challenging visual conditions?
 
 ## Requirements *(mandatory)*
 
 ### Functional Requirements
 
-- **FR-001**: System MUST define VLA architecture clearly including perception, reasoning, and action components
-- **FR-002**: System MUST provide at least 3 example pipelines (pick object, navigate to room, open drawer) as specified
-- **FR-003**: System MUST show ROS 2 integration with VLA models successfully
-- **FR-004**: System MUST enable readers to run a prompt-based humanoid control demo
-- **FR-005**: System MUST validate all claims via official documentation and research papers
-- **FR-006**: System MUST format content as Docusaurus Markdown with standard features including code syntax highlighting and proper front-matter
-- **FR-007**: System MUST limit chapter length to 1,500 words or less
-- **FR-008**: System MUST provide diagrams compatible with draw.io format for each pipeline
-- **FR-009**: System MUST only use publicly available models and simulators (no proprietary components)
-- **FR-010**: System MUST reference sources from robotics VLA papers (RT-X, VLA-based humanoids), NVIDIA, and Google documentation
+- **FR-001**: Module MUST explain the integration of LLMs with ROS 2 for humanoid robot control
+- **FR-002**: Module MUST define VLA pipelines showing the complete flow from Voice → Language → Plan → Action
+- **FR-003**: Module MUST explain multimodal perception and its links between vision and language processing
+- **FR-004**: Module MUST describe Whisper-based speech-to-text integration for voice command processing
+- **FR-005**: Module MUST explain LLM-based cognitive planning for translating high-level commands to multi-step robot actions
+- **FR-006**: Module MUST cover object detection and scene understanding in the perception layer
+- **FR-007**: Module MUST describe vision-language alignment mechanisms in VLA systems
+- **FR-008**: Module MUST explain the complete capstone autonomous humanoid workflow including voice command reception, path planning, obstacle navigation, and object manipulation
+- **FR-009**: Module MUST include APA-formatted citations from academic/credible sources
+- **FR-010**: Module MUST cover safety and reliability constraints in LLM-based robotic planning
 
 ### Key Entities
 
-- **VLA Architecture**: Vision-Language-Action system components for humanoid control
-- **VLA Pipelines**: Implementation of perception → reasoning → action workflows
-- **Simulation Environments**: Gazebo and Isaac for testing VLA systems
-- **ROS 2 Integration**: Connection layer between VLA models and ROS 2 ecosystem
-- **Prompt-to-Action Systems**: Natural language interface for humanoid robot control
+- **Vision-Language-Action (VLA) Systems**: Integrated systems that connect visual perception, natural language processing, and robotic action execution for humanoid robots
+- **LLM-Based Cognitive Planning**: Large Language Model systems that translate high-level human commands into detailed robotic action sequences
+- **Whisper Speech-to-Text**: Voice recognition system that converts human speech to text for LLM processing
+- **Multimodal Perception**: Combined visual and linguistic understanding systems that enable robots to interpret both scenes and commands
+- **Voice-to-Action Pipeline**: Complete workflow from voice input through language processing to robotic action execution
+- **Capstone Autonomous Humanoid**: Integrated system demonstrating all VLA components working together in a complete task execution scenario
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: 90% of readers can correctly identify the 3 main VLA architecture components after reading the chapter
-- **SC-002**: 85% of readers can successfully implement and run at least 3 different VLA pipelines
-- **SC-003**: 80% of readers can successfully integrate VLA models with ROS 2 nodes
-- **SC-004**: 85% of readers can run a complete prompt-based humanoid control demo
-- **SC-005**: 100% of technical claims in the chapter are verified against official documentation and research papers
-- **SC-006**: Chapter length does not exceed 1,500 words
-- **SC-007**: All pipeline diagrams are provided in draw.io compatible format
+- **SC-001**: Students demonstrate understanding of how LLMs integrate with ROS 2 by explaining the integration process with 85% accuracy
+- **SC-002**: Students can define VLA pipelines by describing the complete flow from Voice → Language → Plan → Action with clear examples
+- **SC-003**: Students understand multimodal perception links by explaining how vision and language processing work together in VLA systems
+- **SC-004**: Students can conceptually describe a full robotic task workflow by explaining how voice commands lead to action execution
+- **SC-005**: All claims and frameworks in the module are supported by academic or credible sources with proper citations
+- **SC-006**: Module contains 3,000-5,000 words of comprehensive content covering all specified chapters
+- **SC-007**: Module includes at least 5 academic/credible sources with proper APA citations
+- **SC-008**: Module covers all 6 specified chapters: Foundations of VLA Systems, Voice-to-Action Pipelines, LLM-Based Cognitive Planning, Perception Layer, Capstone Autonomous Humanoid, and Module Deliverables
+- **SC-009**: Students understand safety and reliability constraints in LLM-based robotic planning by explaining potential risks and mitigation strategies
