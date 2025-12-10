@@ -8,20 +8,11 @@
           "label": "Next",
           "isLast": true,
           "path": "/docs",
-          "mainDocId": "intro",
+          "mainDocId": "ros2-foundations/index",
           "docs": [
-            {
-              "id": "info",
-              "path": "/docs/info"
-            },
             {
               "id": "integration/index",
               "path": "/docs/integration/"
-            },
-            {
-              "id": "intro",
-              "path": "/docs/intro",
-              "sidebar": "tutorialSidebar"
             },
             {
               "id": "nvidia-isaac/index",
@@ -48,8 +39,8 @@
           "sidebars": {
             "tutorialSidebar": {
               "link": {
-                "path": "/docs/intro",
-                "label": "intro"
+                "path": "/docs/ros2-foundations/",
+                "label": "ros2-foundations/index"
               }
             }
           }

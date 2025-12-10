@@ -39,31 +39,20 @@ export default [
   },
   {
     path: '/docs',
-    component: ComponentCreator('/docs', '3ff'),
+    component: ComponentCreator('/docs', 'ede'),
     routes: [
       {
         path: '/docs',
-        component: ComponentCreator('/docs', '46f'),
+        component: ComponentCreator('/docs', 'd9c'),
         routes: [
           {
             path: '/docs',
-            component: ComponentCreator('/docs', '776'),
+            component: ComponentCreator('/docs', '5de'),
             routes: [
-              {
-                path: '/docs/info',
-                component: ComponentCreator('/docs/info', '0e3'),
-                exact: true
-              },
               {
                 path: '/docs/integration/',
                 component: ComponentCreator('/docs/integration/', '5dc'),
                 exact: true
-              },
-              {
-                path: '/docs/intro',
-                component: ComponentCreator('/docs/intro', '61d'),
-                exact: true,
-                sidebar: "tutorialSidebar"
               },
               {
                 path: '/docs/nvidia-isaac/',

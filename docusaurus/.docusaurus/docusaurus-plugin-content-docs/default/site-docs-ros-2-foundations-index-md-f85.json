@@ -15,10 +15,6 @@
     "sidebar_position": 2
   },
   "sidebar": "tutorialSidebar",
-  "previous": {
-    "title": "intro",
-    "permalink": "/docs/intro"
-  },
   "next": {
     "title": "Simulation: Gazebo & Unity for Digital Twins",
     "permalink": "/docs/simulation/"
