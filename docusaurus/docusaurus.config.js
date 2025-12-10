@@ -69,7 +69,7 @@ const config = {
       navbar: {
         title: 'Home',
         logo: {
-          alt: 'Physical AI & Humanoid Robotics Logo',
+          alt: '',
           src: 'img/logo.png',
         },
         items: [
@@ -80,7 +80,7 @@ const config = {
             label: 'Book',
           },
           {
-            href: 'https://github.com/your-username/project-01-book-with-AI',
+            href: 'https://github.com/codeofkamlesh/project-01-book-with-AI',
             label: 'GitHub',
             position: 'right',
           },
@@ -116,7 +116,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/your-username/project-01-book-with-AI',
+                href: 'https://github.com/codeofkamlesh/project-01-book-with-AI',
               },
             ],
           },
