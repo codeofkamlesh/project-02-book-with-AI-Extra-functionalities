@@ -11,6 +11,10 @@
           "mainDocId": "intro",
           "docs": [
             {
+              "id": "info",
+              "path": "/docs/info"
+            },
+            {
               "id": "integration/index",
               "path": "/docs/integration/"
             },

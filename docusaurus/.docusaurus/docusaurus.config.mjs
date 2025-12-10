@@ -25,12 +25,10 @@ export default {
       "classic",
       {
         "docs": {
-          "sidebarPath": "./sidebars.js",
-          "editUrl": "https://github.com/your-username/project-01-book-with-AI/tree/master/docusaurus/"
+          "sidebarPath": "./sidebars.js"
         },
         "blog": {
-          "showReadingTime": true,
-          "editUrl": "https://github.com/your-username/project-01-book-with-AI/tree/master/docusaurus/"
+          "showReadingTime": true
         },
         "theme": {
           "customCss": "./src/css/custom.css"
