@@ -1,0 +1,185 @@
+#!/usr/bin/env python3
+"""
+Gazebo Scene Creator Agent
+Generates Gazebo world files and SDF models based on the specification.
+"""
+
+import json
+import os
+from typing import Dict, Any
+from openai import OpenAI
+from datetime import datetime
+
+
+class GazeboSceneCreatorAgent:
+    """
+    Agent that generates Gazebo scenes based on the specification
+    """
+
+    def __init__(self):
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    def generate_scene(self, spec_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Generate Gazebo scene based on the provided specification
+        """
+        robot_model_path = spec_data.get("robot_model_path", "")
+        environment_type = spec_data.get("environment_type", "indoor")
+        objects = spec_data.get("objects", [])
+        lighting_conditions = spec_data.get("lighting_conditions", "bright")
+        physics_properties = spec_data.get("physics_properties", {})
+        scene_name = spec_data.get("scene_name", "default_scene")
+
+        system_message = """You are an expert in Gazebo simulation and SDF (Simulation Description Format). Generate SDF world files and models that are compatible with Gazebo Harmonic and follow best practices for robotics simulation."""
+
+        user_message = f"""
+Generate a complete Gazebo world file with the following specifications:
+
+Robot Model Path: {robot_model_path}
+Environment Type: {environment_type}
+Objects: {', '.join(objects)}
+Lighting Conditions: {lighting_conditions}
+Physics Properties: {physics_properties}
+Scene Name: {scene_name}
+
+Requirements:
+1. Create a proper SDF world file structure
+2. Include the robot model at an appropriate starting position
+3. Add the specified environment type with appropriate models
+4. Include the requested objects in the scene
+5. Set up lighting based on the specified conditions
+6. Configure physics properties as requested
+7. Follow SDF format conventions for Gazebo Harmonic
+8. Include proper materials and textures for realism
+
+Return only the SDF world file content without additional explanations.
+"""
+
+        try:
+            response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": user_message}
+                ],
+                temperature=0.2,
+                max_tokens=2000
+            )
+
+            world_file = response.choices[0].message.content
+
+            # Generate SDF models for custom objects
+            if objects:
+                models_message = f"""
+Generate SDF model definitions for the following objects: {', '.join(objects)}.
+Each model should be a complete SDF model file with:
+1. Proper model structure with name and pose
+2. Link definitions with visual and collision properties
+3. Appropriate geometry, materials, and inertial properties
+4. Follow SDF format conventions for Gazebo Harmonic
+
+Return the SDF model definitions.
+"""
+
+                models_response = self.client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=[
+                        {"role": "system", "content": system_message},
+                        {"role": "user", "content": models_message}
+                    ],
+                    temperature=0.2,
+                    max_tokens=1500
+                )
+
+                sdf_models = models_response.choices[0].message.content
+            else:
+                sdf_models = ""
+
+            # Generate configuration file
+            config_message = f"""
+Generate a configuration file for the {scene_name} world that includes:
+1. Plugin configurations for the simulation
+2. GUI settings and camera positions
+3. Any additional parameters for the environment
+4. Follow ROS2/Gazebo configuration conventions
+
+Return the configuration file content.
+"""
+
+            config_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": config_message}
+                ],
+                temperature=0.2,
+                max_tokens=1000
+            )
+
+            config_file = config_response.choices[0].message.content
+
+            # Generate documentation
+            doc_message = f"""
+Generate documentation for the {scene_name} Gazebo world that includes:
+1. Explanation of the scene setup
+2. Description of objects and their purposes
+3. Physics parameters and their effects
+4. How to load and use the world file
+5. Any special considerations or notes
+
+Return appropriate documentation content.
+"""
+
+            doc_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": doc_message}
+                ],
+                temperature=0.2,
+                max_tokens=1000
+            )
+
+            documentation = doc_response.choices[0].message.content
+
+            return {
+                "world_file": world_file,
+                "sdf_models": sdf_models,
+                "config_file": config_file,
+                "documentation": documentation,
+                "timestamp": datetime.now().isoformat()
+            }
+
+        except Exception as e:
+            return {
+                "error": str(e),
+                "timestamp": datetime.now().isoformat()
+            }
+
+
+def main():
+    """
+    Main function to run the agent
+    """
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python gazebo_scene_creator.agent <spec_file.json>")
+        sys.exit(1)
+
+    spec_file = sys.argv[1]
+
+    # Read the specification
+    with open(spec_file, 'r') as f:
+        spec_data = json.load(f)
+
+    # Create and run the agent
+    agent = GazeboSceneCreatorAgent()
+    result = agent.generate_scene(spec_data)
+
+    # Output the result
+    print(json.dumps(result, indent=2))
+
+
+if __name__ == "__main__":
+    main()

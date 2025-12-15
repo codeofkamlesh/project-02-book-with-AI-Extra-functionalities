@@ -1,0 +1,182 @@
+#!/usr/bin/env python3
+"""
+Quiz Generator Agent
+Generates quizzes and exercises based on book content.
+"""
+
+import json
+import os
+from typing import Dict, Any
+from openai import OpenAI
+from datetime import datetime
+
+
+class QuizGeneratorAgent:
+    """
+    Agent that generates quizzes based on the specification
+    """
+
+    def __init__(self):
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    def generate_quiz(self, spec_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Generate quiz based on the provided specification
+        """
+        topic = spec_data.get("topic", "General Robotics")
+        difficulty_level = spec_data.get("difficulty_level", "beginner")
+        question_count = spec_data.get("question_count", 5)
+        question_types = spec_data.get("question_types", ["multiple_choice"])
+        learning_objectives = spec_data.get("learning_objectives", [])
+        source_content = spec_data.get("source_content", "")
+
+        system_message = """You are an expert educator in robotics and AI. Generate quiz questions that assess understanding of concepts, not just memorization. Questions should be clear, unambiguous, and appropriate for the specified difficulty level."""
+
+        user_message = f"""
+Generate a quiz with the following specifications:
+
+Topic: {topic}
+Difficulty Level: {difficulty_level}
+Number of Questions: {question_count}
+Question Types: {', '.join(question_types)}
+Learning Objectives: {', '.join(learning_objectives)}
+Source Content: {source_content}
+
+Requirements:
+1. Generate {question_count} questions appropriate for the difficulty level
+2. Use the specified question types where possible
+3. Ensure questions assess understanding of concepts, not just recall
+4. Include clear, unambiguous questions with correct answers
+5. For multiple choice, provide 4 options with one correct answer
+6. For code review questions, provide code snippets with issues to identify
+7. Include detailed explanations for each answer
+
+Return the quiz questions in a structured format.
+"""
+
+        try:
+            response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": user_message}
+                ],
+                temperature=0.3,
+                max_tokens=2000
+            )
+
+            quiz_questions_str = response.choices[0].message.content
+
+            # Generate explanations
+            explanation_message = f"""
+Based on the quiz questions for {topic} at {difficulty_level} level, generate detailed explanations for each answer that:
+1. Explain why the correct answer is correct
+2. Explain why incorrect options are wrong (for multiple choice)
+3. Provide additional context and educational value
+4. Reinforce the learning objectives: {', '.join(learning_objectives)}
+
+Return detailed explanations for each question.
+"""
+
+            explanation_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": explanation_message}
+                ],
+                temperature=0.3,
+                max_tokens=1500
+            )
+
+            explanations = explanation_response.choices[0].message.content
+
+            # Generate scoring guide
+            scoring_message = f"""
+Generate a scoring guide for the {topic} quiz that includes:
+1. Points allocation for different question types
+2. Guidelines for evaluating short answer questions
+3. Criteria for partial credit where applicable
+4. Overall assessment criteria based on difficulty level
+
+Return the scoring guidelines.
+"""
+
+            scoring_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": scoring_message}
+                ],
+                temperature=0.3,
+                max_tokens=1000
+            )
+
+            scoring_guide = scoring_response.choices[0].message.content
+
+            # Generate learning assessment
+            assessment_message = f"""
+Generate a learning assessment that maps the {topic} quiz questions to the learning objectives:
+{', '.join(learning_objectives)}
+
+Include:
+1. Which questions assess which objectives
+2. How well each objective is covered by the quiz
+3. Suggestions for additional questions if needed
+4. Alignment between questions and objectives
+
+Return the learning assessment.
+"""
+
+            assessment_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": assessment_message}
+                ],
+                temperature=0.3,
+                max_tokens=1000
+            )
+
+            learning_assessment = assessment_response.choices[0].message.content
+
+            return {
+                "quiz_questions": quiz_questions_str,
+                "explanation": explanations,
+                "scoring_guide": scoring_guide,
+                "learning_assessment": learning_assessment,
+                "timestamp": datetime.now().isoformat()
+            }
+
+        except Exception as e:
+            return {
+                "error": str(e),
+                "timestamp": datetime.now().isoformat()
+            }
+
+
+def main():
+    """
+    Main function to run the agent
+    """
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python quiz_generator.agent <spec_file.json>")
+        sys.exit(1)
+
+    spec_file = sys.argv[1]
+
+    # Read the specification
+    with open(spec_file, 'r') as f:
+        spec_data = json.load(f)
+
+    # Create and run the agent
+    agent = QuizGeneratorAgent()
+    result = agent.generate_quiz(spec_data)
+
+    # Output the result
+    print(json.dumps(result, indent=2))
+
+
+if __name__ == "__main__":
+    main()

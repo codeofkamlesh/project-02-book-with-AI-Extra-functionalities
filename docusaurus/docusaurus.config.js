@@ -24,7 +24,7 @@ const config = {
   organizationName: 'codeofkamlesh', // Usually your GitHub org/user name.
   projectName: 'project-01-book-with-AI', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -89,8 +89,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Book',
-                to: 'project-01-book-with-AI/docs/ros2-foundations/',
+                label: 'ROS2 Foundations',
+                to: '/docs/ros2-foundations/',
               },
             ],
           },

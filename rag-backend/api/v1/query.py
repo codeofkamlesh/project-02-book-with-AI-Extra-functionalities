@@ -1,7 +1,9 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from datetime import datetime
+from ...pipeline.rag import RAGPipeline
+from ...db.pg_client import get_user_profile
 
 router = APIRouter()
 
@@ -17,17 +19,30 @@ class QueryResponse(BaseModel):
     query_id: str
     timestamp: datetime
 
+# Initialize RAG pipeline
+rag_pipeline = RAGPipeline()
+
 @router.post("/query", response_model=QueryResponse)
 async def query_endpoint(request: QueryRequest):
     """
     Main RAG query endpoint that processes user queries and returns contextual answers
     """
     try:
-        # This is a placeholder implementation - actual implementation would use RAG pipeline
-        # For now, returning a mock response
+        # Get user profile if user_id is provided
+        user_profile = None
+        if request.user_id:
+            user_profile = await get_user_profile(request.user_id)
+
+        # Process query through RAG pipeline
+        result = await rag_pipeline.process_query(
+            query=request.query,
+            user_profile=user_profile,
+            highlight_text=request.highlight_text
+        )
+
         response = QueryResponse(
-            answer="This is a placeholder response. The actual RAG implementation would return content from the Physical AI & Humanoid Robotics book based on your query.",
-            sources=[{"title": "Mock Source", "path": "/mock/path", "score": 0.9}],
+            answer=result["answer"],
+            sources=result["sources"],
             query_id=f"query_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{abs(hash(request.query)) % 10000}",
             timestamp=datetime.now()
         )

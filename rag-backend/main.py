@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from dotenv import load_dotenv
+from db.pg_client import init_db
 
 # Load environment variables
 load_dotenv()
@@ -33,10 +34,18 @@ def health_check():
 from api.v1.query import router as query_router
 from api.v1.ingest import router as ingest_router
 from api.v1.auth import router as auth_router
+from api.v1.personalize import router as personalize_router
+from api.v1.translate import router as translate_router
 
 app.include_router(query_router, prefix="/api/v1", tags=["query"])
 app.include_router(ingest_router, prefix="/api/v1", tags=["ingest"])
 app.include_router(auth_router, prefix="/api/v1", tags=["auth"])
+app.include_router(personalize_router, prefix="/api/v1", tags=["personalize"])
+app.include_router(translate_router, prefix="/api/v1", tags=["translate"])
+
+@app.on_event("startup")
+async def startup_event():
+    await init_db()
 
 if __name__ == "__main__":
     import uvicorn

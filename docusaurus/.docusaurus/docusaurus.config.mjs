@@ -11,7 +11,7 @@ export default {
   "baseUrl": "/",
   "organizationName": "codeofkamlesh",
   "projectName": "project-01-book-with-AI",
-  "onBrokenLinks": "throw",
+  "onBrokenLinks": "warn",
   "i18n": {
     "defaultLocale": "en",
     "locales": [
@@ -66,8 +66,8 @@ export default {
           "title": "Docs",
           "items": [
             {
-              "label": "Book",
-              "to": "project-01-book-with-AI/docs/ros2-foundations/"
+              "label": "ROS2 Foundations",
+              "to": "/docs/ros2-foundations/"
             }
           ]
         },

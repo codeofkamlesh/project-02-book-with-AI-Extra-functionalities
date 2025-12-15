@@ -1,0 +1,176 @@
+#!/usr/bin/env python3
+"""
+ROS2 Code Generator Agent
+Generates ROS2 code snippets based on the specification.
+"""
+
+import json
+import os
+from typing import Dict, Any
+from openai import OpenAI
+from datetime import datetime
+
+
+class ROS2CodeGeneratorAgent:
+    """
+    Agent that generates ROS2 code based on the specification
+    """
+
+    def __init__(self):
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+    def generate_code(self, spec_data: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Generate ROS2 code based on the provided specification
+        """
+        urdf_path = spec_data.get("urdf_path", "")
+        target_controller = spec_data.get("target_controller", "")
+        robot_joints = spec_data.get("robot_joints", [])
+        node_name = spec_data.get("node_name", "default_controller")
+        additional_requirements = spec_data.get("additional_requirements", [])
+
+        system_message = """You are an expert ROS2 developer. Generate Python code using rclpy that follows ROS2 Humble Hawksbill conventions and best practices. The code should be well-documented, include proper error handling, and follow ROS2 design patterns."""
+
+        user_message = f"""
+Generate a complete ROS2 controller node with the following specifications:
+
+URDF Path: {urdf_path}
+Target Controller: {target_controller}
+Robot Joints: {', '.join(robot_joints)}
+Node Name: {node_name}
+Additional Requirements: {', '.join(additional_requirements)}
+
+Requirements:
+1. Create a proper rclpy node structure
+2. Include parameter declarations and handling
+3. Implement the controller logic for the specified joints
+4. Add proper logging and error handling
+5. Include a main function and executor setup
+6. Add appropriate comments and documentation
+
+Return only the Python code without any additional explanations.
+"""
+
+        try:
+            response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": user_message}
+                ],
+                temperature=0.2,
+                max_tokens=2000
+            )
+
+            node_skeleton = response.choices[0].message.content
+
+            # Generate launch file
+            launch_message = f"""
+Generate a ROS2 launch file for the {node_name} node that:
+1. Launches the node with appropriate parameters
+2. Sets up parameter files if needed
+3. Follows ROS2 launch file conventions
+4. Is compatible with Python launch files
+
+Return only the Python launch file code without additional explanations.
+"""
+
+            launch_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": launch_message}
+                ],
+                temperature=0.2,
+                max_tokens=1000
+            )
+
+            launch_file = launch_response.choices[0].message.content
+
+            # Generate test specification
+            test_message = f"""
+Generate a test specification for the {node_name} node that includes:
+1. Unit tests for the main functionality
+2. Integration tests for the controller
+3. Parameter validation tests
+4. Error handling tests
+
+Return a specification for tests without implementing them.
+"""
+
+            test_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": test_message}
+                ],
+                temperature=0.2,
+                max_tokens=1000
+            )
+
+            tests_spec = test_response.choices[0].message.content
+
+            # Generate documentation
+            doc_message = f"""
+Generate inline documentation and comments for the {node_name} node code that:
+1. Explains the purpose of the node
+2. Documents the parameters
+3. Explains the controller logic
+4. Provides usage examples
+
+Return appropriate documentation content.
+"""
+
+            doc_response = self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": system_message},
+                    {"role": "user", "content": doc_message}
+                ],
+                temperature=0.2,
+                max_tokens=1000
+            )
+
+            documentation = doc_response.choices[0].message.content
+
+            return {
+                "node_skeleton": node_skeleton,
+                "launch_file": launch_file,
+                "tests_spec": tests_spec,
+                "documentation": documentation,
+                "timestamp": datetime.now().isoformat()
+            }
+
+        except Exception as e:
+            return {
+                "error": str(e),
+                "timestamp": datetime.now().isoformat()
+            }
+
+
+def main():
+    """
+    Main function to run the agent
+    """
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python ros2_code_generator.agent <spec_file.json>")
+        sys.exit(1)
+
+    spec_file = sys.argv[1]
+
+    # Read the specification
+    with open(spec_file, 'r') as f:
+        spec_data = json.load(f)
+
+    # Create and run the agent
+    agent = ROS2CodeGeneratorAgent()
+    result = agent.generate_code(spec_data)
+
+    # Output the result
+    print(json.dumps(result, indent=2))
+
+
+if __name__ == "__main__":
+    main()

@@ -5,9 +5,9 @@ Coordinates the flow between embedding, retrieval, and generation components.
 import asyncio
 import os
 from typing import List, Dict, Any, Optional
-from openai import AsyncOpenAI
 from .embed import Embedder
 from .retriever import Retriever
+from ..agents.openai_agent_integration import OpenAIAgent
 
 class RAGPipeline:
     """
@@ -17,7 +17,7 @@ class RAGPipeline:
     def __init__(self):
         self.embedder = Embedder()
         self.retriever = Retriever()
-        self.client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.agent = OpenAIAgent()
 
     async def initialize(self):
         """
@@ -91,53 +91,14 @@ class RAGPipeline:
         Generate an answer based on the query and retrieved context
         """
         try:
-            # Customize prompt based on user profile if available
-            if user_profile:
-                complexity_modifier = self._get_complexity_modifier(user_profile)
-                prompt_instruction = f"Answer the question considering the user has a {complexity_modifier} background in robotics and AI."
-            else:
-                prompt_instruction = "Answer the question based on the provided context."
-
-            system_message = f"""You are an expert assistant for the Physical AI & Humanoid Robotics book. {prompt_instruction}
-
-            Provide accurate answers based solely on the provided context. Do not hallucinate or provide information not present in the context. If the answer is not available in the context, say so explicitly.
-
-            Context:
-            {context}
-            """
-
-            user_message = f"Question: {query}\n\nProvide a comprehensive answer based on the context above. Include relevant citations to the source materials when possible."
-
-            response = await self.client.chat.completions.create(
-                model="gpt-4o",  # Using GPT-4o for balanced performance and cost
-                messages=[
-                    {"role": "system", "content": system_message},
-                    {"role": "user", "content": user_message}
-                ],
-                temperature=0.3,  # Lower temperature for more consistent, fact-based answers
-                max_tokens=1000
-            )
-
-            return response.choices[0].message.content
+            # Use the OpenAI agent for response generation
+            answer = await self.agent.generate_rag_response(query, context, user_profile)
+            return answer
 
         except Exception as e:
             print(f"Error generating answer: {str(e)}")
             raise
 
-    def _get_complexity_modifier(self, user_profile: Dict[str, Any]) -> str:
-        """
-        Determine complexity modifier based on user profile
-        """
-        software_level = user_profile.get("software_background", {}).get("level", "intermediate")
-        hardware_experience = user_profile.get("hardware_background", {}).get("experience", "basic robotics")
-
-        # Map profile to complexity level
-        if software_level in ["advanced"] or hardware_experience in ["ROS experience"]:
-            return "advanced"
-        elif software_level in ["intermediate"] or hardware_experience in ["Jetson/embedded"]:
-            return "intermediate"
-        else:
-            return "beginner-friendly"
 
     async def ingest_document(
         self,
