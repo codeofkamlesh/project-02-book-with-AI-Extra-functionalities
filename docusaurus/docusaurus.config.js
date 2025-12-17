@@ -17,12 +17,12 @@ const config = {
   url: 'https://codeofkamlesh.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: process.env.NODE_ENV === 'production' ? '/project-01-book-with-AI/' : '/',
+  baseUrl: process.env.NODE_ENV === 'production' ? '/project-02-book-with-AI-Extra-functionalities/' : '/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'codeofkamlesh', // Usually your GitHub org/user name.
-  projectName: 'project-01-book-with-AI', // Usually your repo name.
+  projectName: 'project-02-book-with-AI-Extra-functionalities', // Usually your repo name.
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',

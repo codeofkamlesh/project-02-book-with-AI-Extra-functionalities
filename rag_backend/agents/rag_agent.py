@@ -208,8 +208,18 @@ class RAGAgent:
         return response
 
 
-# Global instance
-rag_agent = RAGAgent()
+# Global instance (created lazily)
+_rag_agent = None
+
+
+def _get_rag_agent():
+    """
+    Get or create the RAG agent instance lazily
+    """
+    global _rag_agent
+    if _rag_agent is None:
+        _rag_agent = RAGAgent()
+    return _rag_agent
 
 
 async def generate_response(query: str, context_chunks: List[Dict[str, Any]],
@@ -218,7 +228,8 @@ async def generate_response(query: str, context_chunks: List[Dict[str, Any]],
     """
     Convenience function to generate a response
     """
-    return await rag_agent.generate_response(query, context_chunks, user_profile, selected_text)
+    agent = _get_rag_agent()
+    return await agent.generate_response(query, context_chunks, user_profile, selected_text)
 
 
 async def query_with_rag(query: str, doc_path_filter: Optional[str] = None,
@@ -227,4 +238,5 @@ async def query_with_rag(query: str, doc_path_filter: Optional[str] = None,
     """
     Convenience function for complete RAG query
     """
-    return await rag_agent.query_with_rag(query, doc_path_filter, user_profile, selected_text, limit)
+    agent = _get_rag_agent()
+    return await agent.query_with_rag(query, doc_path_filter, user_profile, selected_text, limit)

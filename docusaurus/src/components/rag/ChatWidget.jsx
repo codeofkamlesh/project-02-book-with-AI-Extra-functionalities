@@ -9,13 +9,17 @@ const ChatWidget = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [sessionId, setSessionId] = useState(() => {
-    // Generate or retrieve session ID
-    const stored = localStorage.getItem('rag-session-id');
-    if (stored) return stored;
+    // Generate or retrieve session ID only in browser environment
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('rag-session-id');
+      if (stored) return stored;
 
-    const newId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    localStorage.setItem('rag-session-id', newId);
-    return newId;
+      const newId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem('rag-session-id', newId);
+      return newId;
+    }
+    // On server side, return a temporary ID that will be replaced on client
+    return `temp_session_${Date.now()}`;
   });
 
   // Only show chat widget on docs pages, not on homepage or other pages

@@ -26,9 +26,6 @@
       869,
       354
     ],
-    "0212ecdd": [
-      532
-    ],
     "3240c4b7": [
       972
     ],
@@ -73,6 +70,9 @@
     "f85fcc81": [
       183
     ],
+    "f8e80812": [
+      631
+    ],
     "styles": [
       48,
       354,
@@ -89,7 +89,7 @@
         {
           "file": "assets/js/a94703ab.e1168c5a.js",
           "hash": "a090caa247fe9747",
-          "publicPath": "/project-01-book-with-AI/assets/js/a94703ab.e1168c5a.js"
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/a94703ab.e1168c5a.js"
         }
       ]
     },
@@ -98,16 +98,16 @@
         {
           "file": "assets/js/a7bd4aaa.3b29fa03.js",
           "hash": "c7ba4aef5d601c49",
-          "publicPath": "/project-01-book-with-AI/assets/js/a7bd4aaa.3b29fa03.js"
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/a7bd4aaa.3b29fa03.js"
         }
       ]
     },
     "183": {
       "js": [
         {
-          "file": "assets/js/f85fcc81.3cc7a20a.js",
-          "hash": "25809057cfc6be1d",
-          "publicPath": "/project-01-book-with-AI/assets/js/f85fcc81.3cc7a20a.js"
+          "file": "assets/js/f85fcc81.4c98ce55.js",
+          "hash": "2b2ca9a135eed252",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/f85fcc81.4c98ce55.js"
         }
       ]
     },
@@ -116,79 +116,70 @@
         {
           "file": "assets/js/a7456010.ac5ec2ae.js",
           "hash": "9ecf169628fbfcf3",
-          "publicPath": "/project-01-book-with-AI/assets/js/a7456010.ac5ec2ae.js"
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/a7456010.ac5ec2ae.js"
         }
       ]
     },
     "353": {
       "js": [
         {
-          "file": "assets/js/8d9bf57a.b154d398.js",
-          "hash": "44514d51c49f8eb7",
-          "publicPath": "/project-01-book-with-AI/assets/js/8d9bf57a.b154d398.js"
+          "file": "assets/js/8d9bf57a.a8049951.js",
+          "hash": "c9338c320592427e",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/8d9bf57a.a8049951.js"
         }
       ]
     },
     "354": {
       "js": [
         {
-          "file": "assets/js/runtime~main.f13184f9.js",
-          "hash": "973db6235f19abef",
-          "publicPath": "/project-01-book-with-AI/assets/js/runtime~main.f13184f9.js"
+          "file": "assets/js/runtime~main.585f056d.js",
+          "hash": "091feee9067d20c9",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/runtime~main.585f056d.js"
         }
       ]
     },
     "401": {
       "js": [
         {
-          "file": "assets/js/17896441.28afd51f.js",
-          "hash": "eacd6f888bf873ee",
-          "publicPath": "/project-01-book-with-AI/assets/js/17896441.28afd51f.js"
+          "file": "assets/js/17896441.7cb921c0.js",
+          "hash": "f997f4327a0389fc",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/17896441.7cb921c0.js"
         }
       ]
     },
     "473": {
       "js": [
         {
-          "file": "assets/js/c7b39284.d3d0b376.js",
-          "hash": "e49c03db9578bc08",
-          "publicPath": "/project-01-book-with-AI/assets/js/c7b39284.d3d0b376.js"
+          "file": "assets/js/c7b39284.012330b4.js",
+          "hash": "89ed7a2df24d791f",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/c7b39284.012330b4.js"
         }
       ]
     },
     "499": {
       "js": [
         {
-          "file": "assets/js/499.a945599b.js",
-          "hash": "3bfef7f3c93e5df9",
-          "publicPath": "/project-01-book-with-AI/assets/js/499.a945599b.js"
+          "file": "assets/js/499.caf923f0.js",
+          "hash": "2b7de568181dc2bf",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/499.caf923f0.js"
         }
       ]
     },
     "522": {
       "js": [
         {
-          "file": "assets/js/34b338d8.ee9dce4d.js",
-          "hash": "561c097ea338d27e",
-          "publicPath": "/project-01-book-with-AI/assets/js/34b338d8.ee9dce4d.js"
-        }
-      ]
-    },
-    "532": {
-      "js": [
-        {
-          "file": "assets/js/0212ecdd.0a38ce2b.js",
-          "hash": "8f6ca5295d985e3c",
-          "publicPath": "/project-01-book-with-AI/assets/js/0212ecdd.0a38ce2b.js"
+          "file": "assets/js/34b338d8.4bf4c256.js",
+          "hash": "cd1359f7f2bc1c1b",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/34b338d8.4bf4c256.js"
         }
       ]
     },
     "558": {
       "js": [
         {
-          "file": "assets/js/7987babc.8a25f077.js",
-          "hash": "4d5986458d7b01e5",
-          "publicPath": "/project-01-book-with-AI/assets/js/7987babc.8a25f077.js"
+          "file": "assets/js/7987babc.7b635155.js",
+          "hash": "cf929f570fa81b4d",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/7987babc.7b635155.js"
         }
       ]
     },
@@ -197,7 +188,16 @@
         {
           "file": "assets/js/584.f9b20c10.js",
           "hash": "b5fb5a2753ec571c",
-          "publicPath": "/project-01-book-with-AI/assets/js/584.f9b20c10.js"
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/584.f9b20c10.js"
+        }
+      ]
+    },
+    "631": {
+      "js": [
+        {
+          "file": "assets/js/f8e80812.b5fc204c.js",
+          "hash": "af4abd1a73943e74",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/f8e80812.b5fc204c.js"
         }
       ]
     },
@@ -206,7 +206,7 @@
         {
           "file": "assets/js/c4f5d8e4.cdbad119.js",
           "hash": "8775fedc8e96dadc",
-          "publicPath": "/project-01-book-with-AI/assets/js/c4f5d8e4.cdbad119.js"
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/c4f5d8e4.cdbad119.js"
         }
       ]
     },
@@ -215,7 +215,7 @@
         {
           "file": "assets/js/5e95c892.be0a0acd.js",
           "hash": "c1b5e16145affdfe",
-          "publicPath": "/project-01-book-with-AI/assets/js/5e95c892.be0a0acd.js"
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/5e95c892.be0a0acd.js"
         }
       ]
     },
@@ -224,52 +224,52 @@
         {
           "file": "assets/js/aba21aa0.736bbd99.js",
           "hash": "8d271cd5ba55324a",
-          "publicPath": "/project-01-book-with-AI/assets/js/aba21aa0.736bbd99.js"
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/aba21aa0.736bbd99.js"
         }
       ]
     },
     "792": {
       "js": [
         {
-          "file": "assets/js/main.f1d4abdb.js",
-          "hash": "469a0cc5408a4565",
-          "publicPath": "/project-01-book-with-AI/assets/js/main.f1d4abdb.js"
+          "file": "assets/js/main.04dd8841.js",
+          "hash": "9ed5ce2655c1a3de",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/main.04dd8841.js"
         }
       ]
     },
     "815": {
       "js": [
         {
-          "file": "assets/js/f58cd18e.abc20500.js",
-          "hash": "89c942d75584fcba",
-          "publicPath": "/project-01-book-with-AI/assets/js/f58cd18e.abc20500.js"
+          "file": "assets/js/f58cd18e.c4b8a991.js",
+          "hash": "b107767dae3561a9",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/f58cd18e.c4b8a991.js"
         }
       ]
     },
     "869": {
       "css": [
         {
-          "file": "assets/css/styles.279d3346.css",
-          "hash": "e0433237ee86bd2b",
-          "publicPath": "/project-01-book-with-AI/assets/css/styles.279d3346.css"
+          "file": "assets/css/styles.ebf9a012.css",
+          "hash": "c8478a993ae2d831",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/css/styles.ebf9a012.css"
         }
       ]
     },
     "944": {
       "js": [
         {
-          "file": "assets/js/d0316d34.e6635060.js",
-          "hash": "435b35d97ac48b7c",
-          "publicPath": "/project-01-book-with-AI/assets/js/d0316d34.e6635060.js"
+          "file": "assets/js/d0316d34.9e2d6fed.js",
+          "hash": "7c9e6f131e2d6297",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/d0316d34.9e2d6fed.js"
         }
       ]
     },
     "972": {
       "js": [
         {
-          "file": "assets/js/3240c4b7.d63a2a33.js",
-          "hash": "35feb51f0b27b81b",
-          "publicPath": "/project-01-book-with-AI/assets/js/3240c4b7.d63a2a33.js"
+          "file": "assets/js/3240c4b7.9aba8c11.js",
+          "hash": "57324a6b08619c63",
+          "publicPath": "/project-02-book-with-AI-Extra-functionalities/assets/js/3240c4b7.9aba8c11.js"
         }
       ]
     }

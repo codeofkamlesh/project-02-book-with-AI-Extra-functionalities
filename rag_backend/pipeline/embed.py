@@ -109,26 +109,39 @@ class EmbeddingService:
         return updated_chunks
 
 
-# Global instance
-embedding_service = EmbeddingService()
+# Global instance (created lazily)
+_embedding_service = None
+
+
+def _get_embedding_service():
+    """
+    Get or create the embedding service instance lazily
+    """
+    global _embedding_service
+    if _embedding_service is None:
+        _embedding_service = EmbeddingService()
+    return _embedding_service
 
 
 async def embed_text(text: str, dimensions: Optional[int] = 1536) -> List[float]:
     """
     Convenience function to embed a single text
     """
-    return await embedding_service.embed_text(text, dimensions)
+    service = _get_embedding_service()
+    return await service.embed_text(text, dimensions)
 
 
 async def embed_texts(texts: List[str], dimensions: Optional[int] = 1536) -> List[List[float]]:
     """
     Convenience function to embed multiple texts
     """
-    return await embedding_service.embed_texts(texts, dimensions)
+    service = _get_embedding_service()
+    return await service.embed_texts(texts, dimensions)
 
 
 async def embed_document_chunks(chunks: List[dict]) -> List[dict]:
     """
     Convenience function to embed document chunks
     """
-    return await embedding_service.embed_document_chunks(chunks)
+    service = _get_embedding_service()
+    return await service.embed_document_chunks(chunks)

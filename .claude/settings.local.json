@@ -251,7 +251,14 @@
       "Bash(dir \"docusaurus\\src\\theme\" /s)",
       "Bash(dir \"docusaurus\\src\\theme\\DocItem\")",
       "Bash(dir \"docusaurus\\src\\theme\\DocItem\\Layout\")",
-      "Bash(dir \"docusaurus\\src\\css\")"
+      "Bash(dir \"docusaurus\\src\\css\")",
+      "Bash(PORT=3002 npm start)",
+      "Bash(dir \"E:\\Q4 hackathones\\project-01-book-with-AI\" /s)",
+      "Bash(dir \".github\")",
+      "Bash(dir \".github\" /s)",
+      "Bash(dir \"E:\\Q4 hackathones\\project-01-book-with-AI\\docusaurus\\build\")",
+      "Bash(dir \"E:\\Q4 hackathones\\project-01-book-with-AI\\docusaurus\\src\\plugins\\rag-plugin\" /s)",
+      "Bash(dir \"E:\\Q4 hackathones\\project-01-book-with-AI\\docusaurus\\src\\plugins\\rag-plugin\\src\" /s)"
     ],
     "deny": [],
     "ask": []

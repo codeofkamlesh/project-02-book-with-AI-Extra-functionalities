@@ -10,7 +10,7 @@ export default {
   "url": "https://codeofkamlesh.github.io",
   "baseUrl": "/",
   "organizationName": "codeofkamlesh",
-  "projectName": "project-01-book-with-AI",
+  "projectName": "project-02-book-with-AI-Extra-functionalities",
   "onBrokenLinks": "warn",
   "i18n": {
     "defaultLocale": "en",
