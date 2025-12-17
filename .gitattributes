@@ -1,2 +1,39 @@
-# Enforce consistent line endings
-* text=auto eol=crlf
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# Force the following file types to use LF (Unix-style) line endings
+*.json text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.html text eol=lf
+*.xml text eol=lf
+*.svg text eol=lf
+
+# Handle specific files that should maintain their line ending style
+*.sh text eol=lf
+*.bash text eol=lf
+*.zsh text eol=lf
+
+# Binary files should not be modified
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.tar binary
+*.gz binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
