@@ -42,29 +42,17 @@ from rag_backend.api.v1.personalize import router as personalize_router
 from rag_backend.api.v1.translate import router as translate_router
 from rag_backend.api.v1.agents import router as agents_router
 
-# Better-Auth integration
-try:
-    from better_auth import auth
-    from better_auth.fastapi import get_better_auth_fastapi_app
-    from rag_backend.auth.config import better_auth
+# Authentication integration - using fallback routes since better-auth is a JavaScript library
+print("Using standard auth routes (better-auth is a JavaScript library)")
+from rag_backend.api.v1.auth import router as auth_router
+app.include_router(auth_router, prefix="/api/v1", tags=["auth"])
 
-    # Create Better-Auth FastAPI app
-    better_auth_app = get_better_auth_fastapi_app(better_auth)
-
-    # Mount Better-Auth app under /api/auth
-    app.mount("/api/auth", better_auth_app)
-except ImportError:
-    print("Better-Auth not installed, using mock auth routes")
-    # Fallback to existing auth routes
-    from rag_backend.api.v1.auth import router as auth_router
-    app.include_router(auth_router, prefix="/api/v1", tags=["auth"])
-else:
-    # Include other API routes
-    app.include_router(query_router, prefix="/api/v1", tags=["query"])
-    app.include_router(ingest_router, prefix="/api/v1", tags=["ingest"])
-    app.include_router(personalize_router, prefix="/api/v1", tags=["personalize"])
-    app.include_router(translate_router, prefix="/api/v1", tags=["translate"])
-    app.include_router(agents_router, prefix="/api/v1", tags=["agents"])
+# Include other API routes
+app.include_router(query_router, prefix="/api/v1", tags=["query"])
+app.include_router(ingest_router, prefix="/api/v1", tags=["ingest"])
+app.include_router(personalize_router, prefix="/api/v1", tags=["personalize"])
+app.include_router(translate_router, prefix="/api/v1", tags=["translate"])
+app.include_router(agents_router, prefix="/api/v1", tags=["agents"])
 
 # Context7 MCP Server Integration
 @app.post("/context7/webhook")

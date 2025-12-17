@@ -9,7 +9,7 @@ This is the backend service for the Physical AI & Humanoid Robotics book project
 - **Persistent Chat**: Chat sessions that persist across pages
 - **Personalization**: Content adaptation based on user profile
 - **Urdu Translation**: Toggle between English and Urdu
-- **Authentication**: Better-Auth integration with profile questions
+- **Authentication**: Frontend authentication with Better-Auth (JavaScript library), backend uses standard auth patterns
 - **Reusable Intelligence**: Subagent system for AI-powered tasks
 
 ## Architecture
@@ -29,7 +29,7 @@ The backend is built with:
 - PostgreSQL database (Neon)
 - Qdrant Cloud account
 - OpenAI API key
-- Better-Auth (for frontend integration)
+- Better-Auth JavaScript library (for frontend integration)
 
 ### Installation
 
@@ -60,8 +60,8 @@ NEON_DATABASE_URL=your_neon_database_url
 QDRANT_URL=your_qdrant_url
 QDRANT_API_KEY=your_qdrant_api_key
 RAG_API_SECRET=your_api_secret
-BETTER_AUTH_CLIENT_ID=your_better_auth_client_id
-BETTER_AUTH_CLIENT_SECRET=your_better_auth_client_secret
+# BETTER_AUTH_CLIENT_ID=your_better_auth_client_id  # Better-Auth is a JavaScript library, configured in frontend
+# BETTER_AUTH_CLIENT_SECRET=your_better_auth_client_secret  # Better-Auth is a JavaScript library, configured in frontend
 ```
 
 ## Database Setup

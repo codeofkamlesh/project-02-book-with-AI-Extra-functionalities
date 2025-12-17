@@ -1,28 +1,31 @@
-from better_auth.models import User
-from sqlalchemy import Column, String
-from typing import TYPE_CHECKING
+# User models for authentication
+from pydantic import BaseModel
+from typing import Optional, Dict, Any
 
-if TYPE_CHECKING:
-    from better_auth.models import UserDict
+class User(BaseModel):
+    """
+    Basic user model
+    """
+    id: str
+    email: str
+    name: Optional[str] = None
+    created_at: Optional[str] = None
 
 class ExtendedUser(User):
     """
     Extended user model with software/hardware background fields
     """
-    def __init__(self, **kwargs: "UserDict"):
-        super().__init__(**kwargs)
-        # Extended fields for software/hardware background
-        self.software_level = kwargs.get('software_level', 'beginner')
-        self.software_stack = kwargs.get('software_stack', '')
-        self.hardware_level = kwargs.get('hardware_level', 'none')
-        self.hardware_platforms = kwargs.get('hardware_platforms', '')
+    software_level: Optional[str] = 'beginner'
+    software_stack: Optional[str] = ''
+    hardware_level: Optional[str] = 'none'
+    hardware_platforms: Optional[str] = ''
 
-    def to_dict(self) -> "UserDict":
-        base_dict = super().to_dict()
-        base_dict.update({
-            'software_level': self.software_level,
-            'software_stack': self.software_stack,
-            'hardware_level': self.hardware_level,
-            'hardware_platforms': self.hardware_platforms
-        })
-        return base_dict
+    class Config:
+        # Allow extra fields for flexibility
+        extra = "allow"
+
+class UserDict(Dict[str, Any]):
+    """
+    Type definition for user dictionary
+    """
+    pass

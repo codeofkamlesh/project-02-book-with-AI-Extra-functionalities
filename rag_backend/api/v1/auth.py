@@ -22,12 +22,12 @@ class ProfileResponse(BaseModel):
     preferences: dict
     created_at: str
 
-@router.post("/better-auth-callback")
-async def better_auth_callback():
+@router.post("/auth-callback")
+async def auth_callback():
     """
-    Verify Better-Auth token and create session
+    Authentication callback endpoint
     """
-    # In a real implementation, this would verify the Better-Auth token
+    # In a real implementation, this would verify the authentication token
     # For now, returning success
     return {"status": "verified"}
 
@@ -65,49 +65,40 @@ async def get_current_user(request: Request):
     """
     Return current user's profile and information
     """
-    # In Better-Auth, we need to extract the user from the session cookie
-    # The session cookie contains the user information
-    from better_auth.components.session.utils import get_session_user
-
     try:
-        # Get session cookie
-        session_cookie = request.cookies.get("__better_auth_session")
-        if not session_cookie:
-            # No session, return default response
+        # For now, we'll use a simple mock approach that works with the system
+        # In a real implementation, this would extract user info from a proper auth system
+
+        # Check for an auth token or session in the request
+        # This is a simplified approach for the demo
+        auth_header = request.headers.get("authorization")
+        if not auth_header:
+            # No authentication, return default response
             return {
                 "user": {
-                    "id": "unknown",
+                    "id": "anonymous",
                     "email": "",
-                    "name": ""
+                    "name": "Anonymous User"
                 },
                 "profile": {
                     "software_background": {
                         "level": "beginner",
-                        "languages": []
+                        "languages": ["Python"]
                     },
                     "hardware_background": {
                         "experience": "none",
                         "platforms": []
                     },
-                    "preferences": {}
+                    "preferences": {
+                        "learning_style": "visual",
+                        "complexity": "moderate"
+                    }
                 }
             }
 
-        # In a real implementation, we'd validate the session and get user info
-        # For now, we'll use a mock approach that would work with the system
-        # The actual implementation would validate the Better-Auth session
-
-        # For now, return a basic structure that indicates the user is authenticated
-        # The actual user ID would come from the validated session
-        # Let's make a simple approach - we'll extract user info from the session
-        # In Better-Auth, the session contains user information
-
-        # Mock user extraction - in real implementation:
-        # user = await get_session_user(session_cookie)
-        # user_id = user.id
-
-        # For now, we'll return a mock user ID that would be replaced in real implementation
-        user_id = "current_user_id"  # This would be extracted from the session in real implementation
+        # Mock user extraction based on auth token
+        # In a real implementation, you would validate the token and extract user info
+        user_id = "current_user_id"  # Would be extracted from validated token in real implementation
 
         profile = await db_get_user_profile(user_id)
 
@@ -131,8 +122,8 @@ async def get_current_user(request: Request):
         return {
             "user": {
                 "id": user_id,
-                "email": "user@example.com",  # Would come from Better-Auth session
-                "name": "Test User"  # Would come from Better-Auth session
+                "email": "user@example.com",  # Would come from validated session
+                "name": "Test User"  # Would come from validated session
             },
             "profile": profile
         }
@@ -148,12 +139,15 @@ async def get_current_user(request: Request):
             "profile": {
                 "software_background": {
                     "level": "beginner",
-                    "languages": []
+                    "languages": ["Python"]
                 },
                 "hardware_background": {
                     "experience": "none",
                     "platforms": []
                 },
-                "preferences": {}
+                "preferences": {
+                    "learning_style": "visual",
+                    "complexity": "moderate"
+                }
             }
         }
