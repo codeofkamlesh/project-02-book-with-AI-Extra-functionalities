@@ -241,7 +241,11 @@
       "Bash(powershell Copy-Item \"rag_backend\\main.py\" \"api\\index.py\")",
       "Bash(dir api)",
       "Bash(findstr :3001)",
-      "Bash(findstr 6768)"
+      "Bash(findstr 6768)",
+      "Bash(copy \"api\\requirements.txt\" \"requirements.txt\")",
+      "Bash(powershell Copy-Item \"api\\requirements.txt\" \"requirements.txt\")",
+      "Bash(del \"api\\requirements.txt\")",
+      "Bash(powershell Remove-Item \"api\\requirements.txt\")"
     ],
     "deny": [],
     "ask": []
