@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { API_ENDPOINTS } from '../../utils/apiConfig';
 
-const PersonalizeButton = ({ docPath }) => {
+const PersonalizeButton = ({ docPath, ...props }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMode, setSelectedMode] = useState('default');
 

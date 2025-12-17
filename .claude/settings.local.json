@@ -245,7 +245,13 @@
       "Bash(copy \"api\\requirements.txt\" \"requirements.txt\")",
       "Bash(powershell Copy-Item \"api\\requirements.txt\" \"requirements.txt\")",
       "Bash(del \"api\\requirements.txt\")",
-      "Bash(powershell Remove-Item \"api\\requirements.txt\")"
+      "Bash(powershell Remove-Item \"api\\requirements.txt\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json \"/sp.specify Final Fix: Vercel Deployment & Frontend Integration\n\nGoal: Fix the \"\"better-auth\"\" dependency conflict in requirements.txt and resolve frontend UI errors.\n\nSuccess criteria:\n- Vercel build completes without \"\"uv\"\" dependency resolution errors.\n- Python backend (api/index.py) is recognized as the entry point.\n- Urdu translation \"\"Not Found\"\" error (404) is resolved by aligning API routes.\n- PersonalizeButton \"\"jsx\"\" attribute warning is eliminated.\n- Urdu widget button detection error is resolved using React lifecycle hooks.\n\nConstraints:\n- Move better-auth from requirements.txt to package.json.\n- Maintain existing Physical AI textbook content.\n- Ensure all CSS properties use proper vendor prefixes.\" -Number 6 -ShortName \"vercel-deployment-fixes\")",
+      "Bash(dir \"docusaurus\\src\\utils\")",
+      "Bash(dir \"docusaurus\\src\\theme\" /s)",
+      "Bash(dir \"docusaurus\\src\\theme\\DocItem\")",
+      "Bash(dir \"docusaurus\\src\\theme\\DocItem\\Layout\")",
+      "Bash(dir \"docusaurus\\src\\css\")"
     ],
     "deny": [],
     "ask": []
